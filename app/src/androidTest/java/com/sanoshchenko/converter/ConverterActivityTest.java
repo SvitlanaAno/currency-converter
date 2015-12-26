@@ -14,13 +14,17 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.app.PendingIntent.getActivity;
 import static android.support.test.espresso.Espresso.*;
 import static android.support.test.espresso.action.ViewActions.*;
+import static android.support.test.espresso.assertion.ViewAssertions.*;
+import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -38,8 +42,8 @@ public class ConverterActivityTest {
                 .perform(click());
 
         onView(withId(R.id.textView))
-                .check(ViewAssertions
-                        .matches(withText("100.0")));
+                .check(
+                        matches(withText("100.0")));
 
     }
 
@@ -54,8 +58,8 @@ public class ConverterActivityTest {
                 .perform(click());
 
         onView(withId(R.id.textView))
-                .check(ViewAssertions
-                        .matches(withText("4.2")));
+                .check(
+                        matches(withText("4.2")));
 
     }
 
@@ -72,8 +76,8 @@ public class ConverterActivityTest {
                 .perform(click());
 
         onView(withId(R.id.textView))
-                .check(ViewAssertions
-                        .matches(withText("0.39")));
+                .check(
+                        matches(withText("0.39")));
 
     }
 
@@ -88,8 +92,8 @@ public class ConverterActivityTest {
                 .perform(click());
 
         onView(withId(R.id.textView))
-                .check(ViewAssertions
-                        .matches(withText("30000.0")));
+                .check(
+                        matches(withText("30000.0")));
 
     }
 
@@ -104,8 +108,20 @@ public class ConverterActivityTest {
         onView(withId(R.id.startButton)).perform(click());
 
         onView(withId(R.id.textView))
-                .check(ViewAssertions
-                        .matches(withText("3.0")));
+                .check(
+                        matches(withText("3.0")));
+
+    }
+
+    @Test
+    public void testZeroInput() {
+
+        onData(withText("Please input a number")).check(matches(isDisplayed()));
+       // onView(withHint("Enter a value")).check(doesNotExist());
+        onView(withId(R.id.startButton))
+                .perform(click());
+        //onView(withId(R.id.relative)).check(matches(withText("Please input a number")));
+       // onView(withText("Please input a number")).inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
 
     }
 }
