@@ -102,8 +102,8 @@ public class ConverterActivityTest {
         onData(allOf(is(instanceOf(String.class)), is("GBP"))).perform(click());
         // test changes
 
-        onView(withId(R.id.startButton))
-                .perform(click());
+       // onView(withId(R.id.startButton))
+             //   .perform(click());
 
         onView(withId(R.id.textView))
                 .check(ViewAssertions
