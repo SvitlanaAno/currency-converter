@@ -100,7 +100,7 @@ public class ConverterActivityTest {
 
         onView(withId(R.id.ComboboxTo)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("GBP"))).perform(click());
-
+        // test changes
 
         onView(withId(R.id.startButton))
                 .perform(click());
