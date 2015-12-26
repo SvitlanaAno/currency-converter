@@ -46,7 +46,7 @@ public class ConverterActivityTest {
     @Test
     public void testUahToUSD() {
         onView(withId(R.id.valueEditText))
-                .perform(typeText("600"));
+                .perform(typeText("100"));
 
         onView(withId(R.id.ComboboxTo)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("USD"))).perform(click());
@@ -55,7 +55,7 @@ public class ConverterActivityTest {
 
         onView(withId(R.id.textView))
                 .check(ViewAssertions
-                        .matches(withText("25.2")));
+                        .matches(withText("4.2")));
 
     }
 
@@ -89,7 +89,7 @@ public class ConverterActivityTest {
 
         onView(withId(R.id.textView))
                 .check(ViewAssertions
-                        .matches(withText("30000")));
+                        .matches(withText("30000.0")));
 
     }
 
@@ -100,14 +100,12 @@ public class ConverterActivityTest {
 
         onView(withId(R.id.ComboboxTo)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("GBP"))).perform(click());
-        // test changes
 
-       // onView(withId(R.id.startButton))
-             //   .perform(click());
+        onView(withId(R.id.startButton)).perform(click());
 
         onView(withId(R.id.textView))
                 .check(ViewAssertions
-                        .matches(withText("3")));
+                        .matches(withText("3.0")));
 
     }
 }

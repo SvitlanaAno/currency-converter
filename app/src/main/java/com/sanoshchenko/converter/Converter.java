@@ -51,9 +51,12 @@ public class Converter extends Activity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mEditField.getText().toString().length() <=0){
+               try{ if(mEditField.getText().toString().length() <=0){
                     Toast.makeText(Converter.this,"You have to input number",Toast.LENGTH_LONG).show();
-                }
+                }}catch (NullPointerException ie)
+               {
+                   System.out.printf(ie.getMessage());
+               }
                 String name = mEditField.getText().toString();
                 final double value = Double.valueOf(name);
                 int currTo = spinnerTo.getSelectedItemPosition();
